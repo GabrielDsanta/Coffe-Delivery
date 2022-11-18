@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import BackgroundImageHome from "../../assets/Background.svg"
 
-
-export const StylesHome = styled.section`
+export const StylesHomeSection = styled.section`
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     margin-top: 5.75rem;
-    background-image: url(${BackgroundImageHome}) ;
-
+    background-image: url(${BackgroundImageHome});
+    
     h1{
         font-family: 'Baloo 2', cursive;
         font-size: 3rem;
@@ -27,6 +27,13 @@ export const StylesHome = styled.section`
 
     img{
         margin-top: -8rem;
+    }
+
+    .ConteinerSection{
+        display: flex;
+        width: 90rem;
+        align-items: center;
+        justify-content: center;
     }
 
     .SpanDescription{
