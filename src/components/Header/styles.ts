@@ -15,9 +15,9 @@ export const StylesHeader = styled.header`
         gap: .5rem;
         text-decoration: none;
         background-color: ${props => props.theme['purple-ligth']};
-        padding: .6rem;
+        padding: .3rem .5rem;
         border-radius: 8px;
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 
     nav{
@@ -28,7 +28,7 @@ export const StylesHeader = styled.header`
 
     div{
         background-color: ${props => props.theme['yellow-ligth']};
-        padding: .5rem;
+        padding: .3rem;
         border-radius: 8px;
     }
 
@@ -43,10 +43,10 @@ export const StylesHeader = styled.header`
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 1.8rem;
-        width: 1.8rem;
-        margin-top: -3rem;
-        margin-left: -1.5rem;
+        height: 1.2rem;
+        width: 1.2rem;
+        margin-top: -2.5rem;
+        margin-left: -1.2rem;
     }
 
 `

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { StylesHeader } from "./styles"
-import LogoHeader from '../assets/LogoHeader.svg'
+import LogoHeader from '../../assets/LogoHeader.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
 
 export function Header(){
@@ -18,7 +18,7 @@ export function Header(){
 
                 <div>
                     <NavLink to='/checkout' title="Checkout">
-                        <ShoppingCart className="ShopIcon" size={32}/>
+                        <ShoppingCart className="ShopIcon" size={28}/>
                     </NavLink>
                 </div>
                 
