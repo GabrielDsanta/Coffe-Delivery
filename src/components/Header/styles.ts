@@ -8,6 +8,7 @@ export const StylesHeader = styled.header`
     gap: 5rem;
     padding: 2rem;
     color: ${(props) => props.theme['purple-dark']};
+    width: 99vw;
 
     span{
         display: flex;
@@ -24,6 +25,7 @@ export const StylesHeader = styled.header`
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        margin-right: -3rem;
     }
 
     div{

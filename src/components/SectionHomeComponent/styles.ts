@@ -7,7 +7,9 @@ export const StylesHomeSection = styled.section`
     flex-direction: column;
     justify-content: center;
     margin-top: 5.75rem;
-    background-image: url(${BackgroundImageHome});
+    background-image: url(${BackgroundImageHome}); 
+    background-repeat: no-repeat;
+    padding-bottom: 4rem;
     
     h1{
         font-family: 'Baloo 2', cursive;
