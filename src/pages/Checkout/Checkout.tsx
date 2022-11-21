@@ -1,13 +1,13 @@
 
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
+import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { StylesBaseInput, StylesCheckOutPage } from './styles'
 
 export function Checkout(){
     return(
         <StylesCheckOutPage>
-            <h1>Complete seu pedido</h1>
-
             <div>
+                <h1>Complete seu pedido</h1>
                 <div className='AddressCard'>
                     <div className='AddressTitle'>
                         <MapPinLine className='MapPinLine' size={22}/>
@@ -45,35 +45,51 @@ export function Checkout(){
                     </StylesBaseInput>
                 </div>
 
-                <div>
+                <div className='PaymentMethodCard'>
                     <div>
-                        <CurrencyDollar />
-                        <div>
-                            <h2>
-                                Pagamento
-                            </h2>
-                            <h3>
-                                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-                            </h3>
+                        <div className='PaymentMethodTitle'>
+                            <CurrencyDollar className='CurrencyDollar' size={22} />  
+                            <div>
+                                <h2>
+                                    Pagamento
+                                </h2>
+
+                                <h3>
+                                    O pagamento é feito na entrega. Escolha a forma que deseja pagar
+                                </h3>
+                            </div>
                         </div>
                     </div>
 
-                    <span>
-                        <CreditCard />
-                        CARTÃO DE CRÉDITO
-                    </span>
+                    <div className='PaymentOptions'>
+                        <div className='InputRadioCard'>
+                            <input type="radio" name="PaymentOption" />
+                            <CreditCard size={18} className='CreditCard' />
+                            CARTÃO DE CRÉDITO
+                        </div>
 
-                    <span>
-                        <Bank />
-                        CARTÃO DE DÉBITO
-                    </span>
-
-                    <span>
-                        <Money />
-                        DINHEIRO
-                    </span>
+                        <div className='InputRadioCard'>
+                            <input type="radio" name="PaymentOption" />
+                            <Bank size={18} className='Bank' />
+                            CARTÃO DE DÉBITO
+                        </div>
+                            
+                        <div className='InputRadioCard'>
+                            <input type="radio" name="PaymentOption" />
+                            <Money size={18} className='Money' />
+                            DINHEIRO
+                        </div>   
+                    </div>
                 </div>
             </div>
+
+                <div>
+                    <h1>Cafés selecionados</h1>
+
+                    <div className='Cart'>
+                        <CoffeCart />
+                    </div>
+                </div>
         </StylesCheckOutPage>
     )
 }
