@@ -9,27 +9,31 @@ export function CoffeCart(){
             <div>
                 <img height={64} width={64} src={Latte} alt="" />
             </div>
+
             <div>
                 <h2>Expresso Tradicional</h2>
                 <span>
-                    <button>
-                        <Minus size={22}/>
-                    </button>
+                    <span className="AmounControlSpan">
+                        <button>
+                            <Minus size={22}/>
+                        </button>
 
-                    <strong>1</strong>
+                        <strong>1</strong>
 
-                    <button>
-                        <Plus size={22}/>
-                    </button>
+                        <button>
+                            <Plus size={22}/>
+                        </button>
 
-                    <button>
+                    </span>
+
+                    <button className="TrashButton">
                         <Trash size={24}/>
-                        <strong>Remover</strong>
+                        <strong>REMOVER</strong>
                     </button>
                 </span>
             </div>
 
-            <span>R$ 9,90</span>
+            <span className="Price">R$ 9,90</span>
         </StylesCartCoffees>
     )
 }

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 
-export const StylesCheckOutPage = styled.section`
+export const StylesCheckOutPage = styled.form`
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 2.5rem;
+
     h1{
         font-family: 'Baloo 2', sans-serif;
         font-size: 1.125rem;
@@ -52,10 +53,6 @@ export const StylesCheckOutPage = styled.section`
         margin-right: .5rem;
     }
 
-    .PaymentMethodCard{
-
-    }
-
     .PaymentOptions{
         display: flex;
         gap: 0.75rem;
@@ -94,6 +91,56 @@ export const StylesCheckOutPage = styled.section`
             transition: .2s;
             color: ${props => props.theme['base-subtitle']};
             background-color: #D7D5D5;
+        }
+    }
+
+    .CartCard{
+        margin-left: 2rem;
+    }
+
+    .Cart{
+        border-radius: 6px 44px 6px 44px;
+        background-color: ${props => props.theme['base-card']};
+        padding: 2.5rem;
+    }
+
+    .DescriptionCart{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Roboto', sans-serif;
+
+        h3{
+            margin-bottom: 0.75rem;
+            color: ${props => props.theme['base-text']};
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+
+        h4{
+            color: ${props => props.theme['base-subtitle']};
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    }
+
+    .ConfirmOrderButton{
+        color: ${props => props.theme['white']};
+        font-size: 0.875rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        background-color: ${props => props.theme['yellow']};
+        width: 24rem;
+        height: 2.875rem;
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        margin-top: 1.5rem;
+        cursor: pointer;
+
+        :hover{
+            transition: .3s;
+            background-color: ${props => props.theme['yellow-dark']};
         }
     }
 `

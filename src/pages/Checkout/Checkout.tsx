@@ -1,5 +1,6 @@
 
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { StylesBaseInput, StylesCheckOutPage } from './styles'
 
@@ -83,12 +84,35 @@ export function Checkout(){
                 </div>
             </div>
 
-                <div>
+                <div className='CartCard'>
                     <h1>Cafés selecionados</h1>
 
                     <div className='Cart'>
                         <CoffeCart />
+                        <CoffeCart />
+
+                        <section>
+                            <div className='DescriptionCart'>
+                                <h3>Total de itens</h3>
+                                <h3>R$ 29,70</h3>
+                            </div>
+
+                            <div className='DescriptionCart'>
+                                <h3>Entrega</h3>
+                                <h3>R$ 3,50</h3>
+                            </div>
+
+                            <div className='DescriptionCart'>
+                                <h2>Total</h2>
+                                <h2>R$ 33,20</h2>
+                            </div>
+
+                           <NavLink to='/success' title="Success">
+                                <button className='ConfirmOrderButton' type='submit'>CONFIRMAR PEDIDO</button>
+                           </NavLink>
+                        </section>
                     </div>
+
                 </div>
         </StylesCheckOutPage>
     )
