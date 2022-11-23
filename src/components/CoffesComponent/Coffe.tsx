@@ -1,5 +1,7 @@
 
 import { ShoppingCart, Plus, Minus } from "phosphor-react"
+import { useContext } from "react"
+import { CoffeContext } from "../../pages/Home/Home"
 
 interface CoffeData{
     CoffeImage: string
@@ -12,6 +14,12 @@ interface CoffeData{
 
 
 export function CoffeLayout({CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe}: CoffeData){
+    const { Amount = 0, PlusAmountCoffe } = useContext(CoffeContext)
+
+    function HandlePlusAmountCoffe(Amount: number){
+        PlusAmountCoffe(Amount)
+    }
+    
     return(
         
         <section>
@@ -41,8 +49,8 @@ export function CoffeLayout({CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeTh
 
                     <span className="SpanButtons">
                         <button><Minus /></button>
-                        <span className="AmountCoffeeValue">1</span>
-                        <button><Plus /></button>
+                        <span className="AmountCoffeeValue">{Amount}</span>
+                        <button onClick={HandlePlusAmountCoffe(Amount)}><Plus /></button>
                     </span>
 
                     <button>

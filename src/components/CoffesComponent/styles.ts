@@ -73,6 +73,11 @@ export const CoffesSectionBaseStyles = styled.section`
         padding: .3rem;
         border-radius: 6px;
         cursor: pointer;
+
+        :hover{
+            transition: .3s;
+            background-color: ${props => props.theme['purple']};
+        }
     }
 
     .Card{
@@ -116,6 +121,11 @@ export const CoffesSectionBaseStyles = styled.section`
         align-items: center;
         justify-content: center;
         cursor: pointer;
+
+        :hover{
+            transition: .3s;
+            color: ${props => props.theme['purple-dark']};
+        }
     }
 
     .TitlesCoffesDiv{

@@ -160,6 +160,11 @@ export const StylesBaseInput = styled.form`
     color: ${props => props.theme['base-text']};
     outline: none; 
     margin-right: 0.75rem;
+
+    :focus{
+        transition: .2s;
+        outline: solid 1px ${props => props.theme['yellow-dark']};
+    }
    }
 
    .InputStreet{
