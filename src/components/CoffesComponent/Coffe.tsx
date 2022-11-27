@@ -1,22 +1,41 @@
 
 import { ShoppingCart, Plus, Minus } from "phosphor-react"
-import { useContext } from "react"
-import { CoffeContext } from "../../contexts/CoffeContext"
+import { MouseEvent, useContext, useState } from "react"
+import { CartData, CoffeContext } from "../../contexts/CoffeContext"
 
-interface CoffeData{
+interface CoffeLayoutProps{
     CoffeImage: string
     TitleCoffe: string
     TitleCoffeTwo?: string
     TitleCoffeThree?: string
     TypeCoffe: string
     DescriptionCoffe: string
-    AmountCoffeProp: number
+
 }
 
 
-export function CoffeLayout({CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe,  AmountCoffeProp = 1}: CoffeData){
+export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe }: CoffeLayoutProps){
+    const [AmountCoffe, setAmountCoffe] = useState(1)
+    const { CallSetCart } = useContext(CoffeContext)
 
-    const { AmountCoffe, setAmountCoffe, PlusAmountCoffe, MinusAmountCoffe } = useContext(CoffeContext)
+    function PlusAmountCoffe(){
+        setAmountCoffe(AmountCoffe + 1)
+    }
+
+    function MinusAmountCoffe(){
+        AmountCoffe == 0 ? setAmountCoffe(0) : setAmountCoffe(AmountCoffe - 1)
+    }
+
+    function AddCoffeToCart(e: MouseEvent<HTMLButtonElement>){
+        const NewCoffeToCart: CartData = {
+            id: TypeCoffe,
+            CoffeImage: CoffeImage,
+            TypeCoffe: TypeCoffe,
+            Amount: AmountCoffe,
+        }
+
+        CallSetCart(NewCoffeToCart)
+    }
 
     return(
         
@@ -49,13 +68,13 @@ export function CoffeLayout({CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeTh
                         <button onClick={MinusAmountCoffe}><Minus /></button>
 
                         <span className="AmountCoffeeValue">
-                            {AmountCoffeProp}
+                            {AmountCoffe}
                         </span>
 
                         <button onClick={PlusAmountCoffe}><Plus /></button>
                     </span>
 
-                    <button>
+                    <button onClick={AddCoffeToCart}>
                         <ShoppingCart size={24}/>
                     </button>
                 </span>

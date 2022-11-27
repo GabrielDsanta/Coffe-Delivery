@@ -1,24 +1,40 @@
 import { Minus, Plus, Trash } from "phosphor-react";
 import { StylesCartCoffees } from "./styles";
-import Latte from "../../assets/Coffes/Latte.svg"
+import { useContext } from "react";
+import { CoffeContext } from "../../contexts/CoffeContext";
 
 
 export function CoffeCart(){
-    return(
+    const { Cart } = useContext(CoffeContext)
+
+    console.log(Cart)
+    return (
         <StylesCartCoffees>
             <div>
-                <img height={64} width={64} src={Latte} alt="" />
+                {Cart.length > 0 && (Cart.map((item) => {
+                    return( 
+                        <img height={64} width={64} src={item.CoffeImage} alt="" />
+                    )
+                }))}
             </div>
 
             <div>
-                <h2>Expresso Tradicional</h2>
+                {Cart.length > 0 && (Cart.map((item) => {
+                    return(
+                        <h2>{item.TypeCoffe}</h2>
+                    )
+                }))}
                 <span>
                     <span className="AmounControlSpan">
                         <button>
                             <Minus size={22}/>
                         </button>
 
-                        <strong>1</strong>
+                       {Cart.length > 0 && (Cart.map((item) => {
+                        return(
+                            <strong>{item.Amount}</strong>
+                        )
+                       }))}
 
                         <button>
                             <Plus size={22}/>
@@ -34,6 +50,8 @@ export function CoffeCart(){
             </div>
 
             <span className="Price">R$ 9,90</span>
-        </StylesCartCoffees>
+        </StylesCartCoffees> 
     )
+      
+            
 }

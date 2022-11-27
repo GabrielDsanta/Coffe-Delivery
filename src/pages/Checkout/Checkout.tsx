@@ -1,10 +1,14 @@
 
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
+import { CoffeContext } from '../../contexts/CoffeContext'
 import { StylesBaseInput, StylesCheckOutPage } from './styles'
 
 export function Checkout(){
+    const { Cart } = useContext(CoffeContext)
+
     return(
         <StylesCheckOutPage>
             <div>
@@ -88,8 +92,11 @@ export function Checkout(){
                     <h1>Cafés selecionados</h1>
 
                     <div className='Cart'>
-                        <CoffeCart />
-                        <CoffeCart />
+                        {Cart.length > 0 && (Cart.map((item) => {
+                            return(
+                                <CoffeCart />
+                            )
+                        }))}
 
                         <section>
                             <div className='DescriptionCart'>

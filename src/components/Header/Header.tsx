@@ -2,8 +2,11 @@ import { NavLink } from "react-router-dom";
 import { StylesHeader } from "./styles"
 import LogoHeader from '../../assets/LogoHeader.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
+import { useContext } from "react";
+import { CoffeContext } from "../../contexts/CoffeContext";
 
 export function Header(){
+    const { Cart } = useContext(CoffeContext)
     return(
         <StylesHeader>
             <NavLink to='/' title="Home">
@@ -22,7 +25,7 @@ export function Header(){
                     </NavLink>
                 </div>
                 
-                <span className="CartAmount">1</span>
+                {Cart.length > 0 && (<span className="CartAmount">{Cart.length}</span>)}
             </nav>
         </StylesHeader>
     )

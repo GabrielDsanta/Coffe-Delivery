@@ -14,13 +14,10 @@ import Cubano from "../../assets/Coffes/Cubano.svg"
 import Havaiano from "../../assets/Coffes/Havaiano.svg"
 import Arabic from "../../assets/Coffes/Arabic.svg"
 import Irish from "../../assets/Coffes/Irish.svg"
-import { useContext } from "react";
-import { CoffeContext } from "../../contexts/CoffeContext";
+
 
 
 export function CoffesSection(){
-    const { AmountCoffe } = useContext(CoffeContext)
-    
     return(
         <CoffesSectionBaseStyles>
             <h1 className="TitleCoffees">Nossos cafés</h1>
@@ -31,7 +28,6 @@ export function CoffesSection(){
                     TitleCoffe="TRADICIONAL"
                     TypeCoffe="Expresso Tradicional"
                     DescriptionCoffe="O Tradicional café feito com água quente e grãos moídos" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -39,7 +35,6 @@ export function CoffesSection(){
                     TitleCoffe="TRADICIONAL"
                     TypeCoffe="Expresso Americano"
                     DescriptionCoffe="Expresso diluído, menos intenso que o tradicional" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -47,7 +42,6 @@ export function CoffesSection(){
                     TitleCoffe="TRADICIONAL"
                     TypeCoffe="Expresso Cremoso"
                     DescriptionCoffe="Café expresso tradicional com espuma cremosa" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -56,7 +50,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="GELADO"
                     TypeCoffe="Expresso Gelado"
                     DescriptionCoffe="Bebida preparada com café expresso e cubos de gelo" 
-                    AmountCoffeProp={AmountCoffe}
                 />
             </section>
 
@@ -67,7 +60,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="COM LEITE"
                     TypeCoffe="Café com Leite"
                     DescriptionCoffe="Meio a meio de expresso tradicional com leite vaporizado" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -76,7 +68,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="COM LEITE"
                     TypeCoffe="Latte"
                     DescriptionCoffe="Uma dose de café expresso com o dobro de leite e espuma cremosa" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -85,7 +76,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="COM LEITE"
                     TypeCoffe="Capuccino"
                     DescriptionCoffe="Bebida com canela feita de doses iguais de café, leite e espuma" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -94,7 +84,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="COM LEITE"
                     TypeCoffe="Macchiato"
                     DescriptionCoffe="Café expresso misturado com um pouco de leite quente e espuma" 
-                    AmountCoffeProp={AmountCoffe}
                 />
             </section>
 
@@ -105,7 +94,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="COM LEITE"
                     TypeCoffe="Mocaccino"
                     DescriptionCoffe="Café expresso com calda de chocolate, pouco leite e espuma" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -114,7 +102,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="COM LEITE"
                     TypeCoffe="Chocolate Quente"
                     DescriptionCoffe="Bebida feita com chocolate dissolvido no leite quente e café" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -124,7 +111,6 @@ export function CoffesSection(){
                     TitleCoffeThree="ALCOÓLICO"
                     TypeCoffe="Cubano"
                     DescriptionCoffe="Drink gelado de café expresso com rum, creme de leite e hortelã" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -132,7 +118,6 @@ export function CoffesSection(){
                     TitleCoffe="ESPECIAL"
                     TypeCoffe="Havaiano"
                     DescriptionCoffe="Bebida adocicada preparada com café e leite de coco" 
-                    AmountCoffeProp={AmountCoffe}
                 />
             </section>
 
@@ -142,7 +127,6 @@ export function CoffesSection(){
                     TitleCoffe="ESPECIAL"
                     TypeCoffe="Árabe"
                     DescriptionCoffe="Bebida preparada com grãos de café árabe e especiarias" 
-                    AmountCoffeProp={AmountCoffe}
                 />
 
                 <CoffeLayout 
@@ -151,7 +135,6 @@ export function CoffesSection(){
                     TitleCoffeTwo="ALCOÓLICO"
                     TypeCoffe="Irlandês"
                     DescriptionCoffe="Bebida preparada com grãos de café árabe e especiarias" 
-                    AmountCoffeProp={AmountCoffe}
                 />
             </div>
 
