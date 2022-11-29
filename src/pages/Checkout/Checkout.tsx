@@ -1,4 +1,3 @@
-
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
@@ -8,6 +7,14 @@ import { StylesBaseInput, StylesCheckOutPage } from './styles'
 
 export function Checkout(){
     const { Cart } = useContext(CoffeContext)
+    let price = 0
+
+    Cart.map((item) => {
+        return price = price + item.Amount
+    })
+
+    price *= 9.90
+    const total = price + 3.50
 
     return(
         <StylesCheckOutPage>
@@ -94,28 +101,43 @@ export function Checkout(){
                     <div className='Cart'>
                         {Cart.length > 0 && (Cart.map((item) => {
                             return(
-                                <CoffeCart />
+                                <CoffeCart 
+                                key={item.id} 
+                                CoffeImage={item.CoffeImage}
+                                TypeCoffe={item.TypeCoffe}
+                                Amount={item.Amount}
+                                id={item.id}
+                                 />
                             )
                         }))}
+
+                        {Cart.length === 0 && (     
+                            <h1>Seu carrinho está vazio</h1>
+                        )}
 
                         <section>
                             <div className='DescriptionCart'>
                                 <h3>Total de itens</h3>
-                                <h3>R$ 29,70</h3>
+                                <h3>R${(price).toFixed(2)}</h3>
                             </div>
 
                             <div className='DescriptionCart'>
                                 <h3>Entrega</h3>
                                 <h3>R$ 3,50</h3>
-                            </div>
+                            </div>  
 
                             <div className='DescriptionCart'>
                                 <h2>Total</h2>
-                                <h2>R$ 33,20</h2>
+                                <h2>R${total}0</h2>
                             </div>
 
                            <NavLink to='/success' title="Success">
-                                <button className='ConfirmOrderButton' type='submit'>CONFIRMAR PEDIDO</button>
+                                {Cart.length === 0 && (
+                                    <button className='ConfirmOrderButton' disabled type='submit'>CONFIRMAR PEDIDO</button>
+                                )}
+                                 {Cart.length > 0 && (
+                                    <button className='ConfirmOrderButton' type='submit'>CONFIRMAR PEDIDO</button>
+                                 )}
                            </NavLink>
                         </section>
                     </div>

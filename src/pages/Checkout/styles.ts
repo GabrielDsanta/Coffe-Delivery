@@ -142,6 +142,14 @@ export const StylesCheckOutPage = styled.form`
             transition: .3s;
             background-color: ${props => props.theme['yellow-dark']};
         }
+
+        :disabled{
+            :hover{
+                transition: .3s;
+                cursor: not-allowed;
+                background-color: #D4AD3F;
+            }
+        }
     }
 `
 
