@@ -1,5 +1,5 @@
 # Coffe-Delivery
-Applying my knowledge in React with TypeScript in a more complex application, simulating an Eccommerce of coffees.
+Applying my knowledge in React with TypeScript in a more complex application, simulating an coffees Eccommerce.
 
 In this project the main tech is the useContext hook, but I'm also improving my knowledge in useState and some other basic functionality of React
 
