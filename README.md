@@ -1,10 +1,9 @@
 # Coffe-Delivery
-Aplicando meus conhecimentos em React com TypeScript em uma aplicação mais complexa, simulando um Eccommerce de coffes.
+Applying my knowledge in React with TypeScript in a more complex application, simulating an Eccommerce of coffees.
 
-Neste projeto a principal tech é o hook useContext, Mas também estou aperfeiçoando ainda mais meus conhecimentos em useState e useForm.
+In this project the main tech is the useContext hook, but I'm also improving my knowledge in useState and some other basic functionality of React
 
-Assim como nos outros projetos estou usando alguns pacotes como o ViteJS, phosphor-react, react-router-dom e styles-components
-
+As in the other projects I'm using some packages like ViteJS, phosphor-react, react-router-dom, styles-components and react-hook-form
 
 ![PrintHomePage](https://user-images.githubusercontent.com/74938890/205099639-8dab1e74-2a30-4efc-8115-27d3909648ae.jpeg)
 ![PrintCoffes](https://user-images.githubusercontent.com/74938890/205099820-7a079b3f-d3c9-4d1d-accc-76a260cf32a8.jpeg)
