@@ -153,7 +153,7 @@ export const StylesCheckOutPage = styled.form`
     }
 `
 
-export const StylesBaseInput = styled.form`
+export const StylesBaseInput = styled.div`
 
    input{
     font-family: 'Roboto', sans-serif;

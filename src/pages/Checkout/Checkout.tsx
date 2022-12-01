@@ -4,11 +4,29 @@ import { NavLink } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { CoffeContext } from '../../contexts/CoffeContext'
 import { StylesBaseInput, StylesCheckOutPage } from './styles'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import zod, { string } from 'zod'
+
+const newAddressRegisterSchema = zod.object({
+    CEP: zod.string().min(8).max(8),
+    road: zod.string().min(5).max(30),
+    homeNumber: zod.string().min(1).max(6),
+    complement: zod.string().min(5).max(30),
+    district: zod.string().min(1).max(30),
+    city: zod.string().min(1).max(20),
+    UF: zod.string().min(2).max(2)
+})
+
+type newAddressRegisterSchemaData = zod.infer<typeof newAddressRegisterSchema>
 
 export function Checkout(){
     const { Cart } = useContext(CoffeContext)
-    let price = 0
+    const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
+        resolver: zodResolver(newAddressRegisterSchema),
+    })
 
+    let price = 0
     Cart.map((item) => {
         return price = price + item.Amount
     })
@@ -16,8 +34,15 @@ export function Checkout(){
     price *= 9.90
     const total = price + 3.50
 
+    function handleSubmitForm(data: any){
+        console.log(data)
+        const newAddressRegister = {
+
+        }
+    }
+
     return(
-        <StylesCheckOutPage>
+        <StylesCheckOutPage onSubmit={handleSubmit(handleSubmitForm)}>
             <div>
                 <h1>Complete seu pedido</h1>
                 <div className='AddressCard'>
@@ -34,26 +59,60 @@ export function Checkout(){
                         </div>
                     </div>
 
-                    <StylesBaseInput action='#'>
-                        <input type='text' placeholder='CEP' />
+                    <StylesBaseInput>
+
+                        <input 
+                            type='text' 
+                            placeholder='CEP' 
+                            {...register('CEP')}
+                        />
 
                         <div>
-                            <input className='InputStreet' type='text' placeholder='Rua' />
+                            <input 
+                                className='InputStreet' 
+                                type='text' 
+                                placeholder='Rua' 
+                                {...register('road')}
+                            />
                         </div>
 
                         <div>
-                            <input type='text' placeholder='Número' />
+                            <input 
+                                type='text' 
+                                placeholder='Número'
+                                {...register('homeNumber')} 
+                            />
                             
-                            <input className='ComplementInput' type='text' placeholder='Complemento' />
+                            <input 
+                                className='ComplementInput' 
+                                type='text' 
+                                placeholder='Complemento'
+                                {...register('complement')}
+                            />
                             <span className='ComplementSpan'>Opcional</span>
                         </div>
 
                         <div>
-                            <input type='text' placeholder='Bairro' />
-                            <input className='CityInput' type='text' placeholder='Cidade' />
-                            <input className='InputUF' type='text' placeholder='UF' />
+                            <input 
+                                type='text' 
+                                placeholder='Bairro' 
+                                {...register('district')}
+                            />
+
+                            <input 
+                                className='CityInput' 
+                                type='text' 
+                                placeholder='Cidade' 
+                                {...register('city')}
+                            />
+
+                            <input 
+                                className='InputUF' 
+                                type='text' 
+                                placeholder='UF' 
+                                {...register('UF')}
+                            />
                         </div>
-                        
                     </StylesBaseInput>
                 </div>
 
@@ -131,14 +190,14 @@ export function Checkout(){
                                 <h2>R${total}0</h2>
                             </div>
 
-                           <NavLink to='/success' title="Success">
+                           {/* <NavLink to='/success' title="Success"> */}
                                 {Cart.length === 0 && (
-                                    <button className='ConfirmOrderButton' disabled type='submit'>CONFIRMAR PEDIDO</button>
+                                    <button className='ConfirmOrderButton' disabled>CONFIRMAR PEDIDO</button>
                                 )}
                                  {Cart.length > 0 && (
-                                    <button className='ConfirmOrderButton' type='submit'>CONFIRMAR PEDIDO</button>
+                                    <button type='submit' className='ConfirmOrderButton'>CONFIRMAR PEDIDO</button>
                                  )}
-                           </NavLink>
+                           {/* </NavLink> */}
                         </section>
                     </div>
 
