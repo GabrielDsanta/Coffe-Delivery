@@ -13,7 +13,6 @@ interface CoffeLayoutProps{
 
 }
 
-
 export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe }: CoffeLayoutProps){
     const [AmountCoffe, setAmountCoffe] = useState(1)
     const { CallSetCart } = useContext(CoffeContext)

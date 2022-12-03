@@ -2,28 +2,15 @@ import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-re
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
-import { CoffeContext } from '../../contexts/CoffeContext'
+import { CoffeContext, newAddressRegisterSchema, newAddressRegisterSchemaData } from '../../contexts/CoffeContext'
 import { StylesBaseInput, StylesCheckOutPage } from './styles'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import zod, { string } from 'zod'
-
-const newAddressRegisterSchema = zod.object({
-    CEP: zod.string().min(8).max(8),
-    road: zod.string().min(5).max(30),
-    homeNumber: zod.string().min(1).max(6),
-    complement: zod.string().min(5).max(30),
-    district: zod.string().min(1).max(30),
-    city: zod.string().min(1).max(20),
-    UF: zod.string().min(2).max(2)
-})
-
-type newAddressRegisterSchemaData = zod.infer<typeof newAddressRegisterSchema>
 
 export function Checkout(){
-    const { Cart } = useContext(CoffeContext)
+    const { Cart, CallSetAddress } = useContext(CoffeContext)
     const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
-        resolver: zodResolver(newAddressRegisterSchema),
+        resolver: zodResolver(newAddressRegisterSchema)
     })
 
     let price = 0
@@ -34,11 +21,18 @@ export function Checkout(){
     price *= 9.90
     const total = price + 3.50
 
-    function handleSubmitForm(data: any){
-        console.log(data)
-        const newAddressRegister = {
-
+    function handleSubmitForm(data: newAddressRegisterSchemaData){
+        const newAddressRegister: newAddressRegisterSchemaData = {
+            CEP: data.CEP,
+            city: data.city,
+            complement: data.complement,
+            district: data.district,
+            homeNumber: data.homeNumber,
+            UF: data.UF,
+            road: data.road
         }
+
+        CallSetAddress(newAddressRegister)
     }
 
     return(
@@ -190,14 +184,14 @@ export function Checkout(){
                                 <h2>R${total}0</h2>
                             </div>
 
-                           {/* <NavLink to='/success' title="Success"> */}
+                           <NavLink to='/success' title="Success">
                                 {Cart.length === 0 && (
                                     <button className='ConfirmOrderButton' disabled>CONFIRMAR PEDIDO</button>
                                 )}
                                  {Cart.length > 0 && (
                                     <button type='submit' className='ConfirmOrderButton'>CONFIRMAR PEDIDO</button>
                                  )}
-                           {/* </NavLink> */}
+                           </NavLink>
                         </section>
                     </div>
 

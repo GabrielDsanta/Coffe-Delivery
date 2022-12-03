@@ -1,8 +1,12 @@
 import { StylesSuccess } from "./styles"
 import { MapPin, Timer, CurrencyDollar } from "phosphor-react"
 import Illustration from "../../assets/Illustration.svg"
+import { useContext } from "react"
+import { CoffeContext } from "../../contexts/CoffeContext"
 
 export function Success(){
+    const {Address} = useContext(CoffeContext)
+    console.log(Address)
     return(
         <StylesSuccess>
             <div>
