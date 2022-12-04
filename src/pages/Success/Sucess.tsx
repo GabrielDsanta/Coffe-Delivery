@@ -5,8 +5,8 @@ import { useContext } from "react"
 import { CoffeContext } from "../../contexts/CoffeContext"
 
 export function Success(){
-    const {Address} = useContext(CoffeContext)
-    console.log(Address)
+    const { Address } = useContext(CoffeContext)
+
     return(
         <StylesSuccess>
             <div>
@@ -22,12 +22,10 @@ export function Success(){
                             </div>
 
                             <div>
-                                <h2>Entrega em 
-                                    <strong> Rua João Daniel Martinelli, 102</strong>
-                                </h2>
+                                <h2>Entrega em <strong> {Address.road}, {Address.homeNumber}</strong></h2>
 
                                 <h2>
-                                    Farrapos - Porto Alegre, RS
+                                    {Address.district} - {Address.city}, {(Address.UF).toUpperCase()}
                                 </h2>
                             </div>
                         </div>

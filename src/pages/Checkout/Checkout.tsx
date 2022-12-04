@@ -1,6 +1,6 @@
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { CoffeContext, newAddressRegisterSchema, newAddressRegisterSchemaData } from '../../contexts/CoffeContext'
 import { StylesBaseInput, StylesCheckOutPage } from './styles'
@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
-    const { Cart, CallSetAddress } = useContext(CoffeContext)
+    const { Cart, CallSetAddress, Address } = useContext(CoffeContext)
     const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
@@ -22,17 +22,7 @@ export function Checkout(){
     const total = price + 3.50
 
     function handleSubmitForm(data: newAddressRegisterSchemaData){
-        const newAddressRegister: newAddressRegisterSchemaData = {
-            CEP: data.CEP,
-            city: data.city,
-            complement: data.complement,
-            district: data.district,
-            homeNumber: data.homeNumber,
-            UF: data.UF,
-            road: data.road
-        }
-
-        CallSetAddress(newAddressRegister)
+        CallSetAddress(data)
     }
 
     return(
@@ -184,14 +174,17 @@ export function Checkout(){
                                 <h2>R${total}0</h2>
                             </div>
 
-                           <NavLink to='/success' title="Success">
                                 {Cart.length === 0 && (
                                     <button className='ConfirmOrderButton' disabled>CONFIRMAR PEDIDO</button>
                                 )}
-                                 {Cart.length > 0 && (
+
+                                {Cart.length > 0 && (
                                     <button type='submit' className='ConfirmOrderButton'>CONFIRMAR PEDIDO</button>
-                                 )}
-                           </NavLink>
+                                )}
+
+                                {Address.CEP !== undefined && (
+                                    <Navigate to='/success'/>
+                                )}
                         </section>
                     </div>
 
