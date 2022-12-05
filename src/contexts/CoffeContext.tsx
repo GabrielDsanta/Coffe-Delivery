@@ -24,6 +24,8 @@ export interface CoffeData{
     CallSetCart: (data: CartData) => void
     Address: AddressData
     CallSetAddress: (data: AddressData) => void
+    Total: number
+    CallSetTotal: (price: number) => void
 }
 
 export const newAddressRegisterSchema = zod.object({
@@ -49,6 +51,7 @@ export const CoffeContext = createContext({} as CoffeData)
 export function CoffeContextProvider({ children }: CoffeContextProviderProps){
     const [Cart, setCart] = useState<CartData[]>([])
     const [Address, setAddress] = useState<AddressData>({} as AddressData)
+    const [Total, setTotal] = useState(0)
 
     function CallSetCart(data: CartData){
         setCart((state) => [...state, data])
@@ -57,6 +60,18 @@ export function CoffeContextProvider({ children }: CoffeContextProviderProps){
     function CallSetAddress(data: AddressData){
         setAddress(data)
     }
+
+    function CallSetTotal(price: number){
+        setTotal(Total + price)
+    }
+
+    // function PlusAmountCoffe(){
+    //     setAmountCoffe(AmountCoffe + 1)
+    // }
+
+    // function MinusAmountCoffe(){
+    //     AmountCoffe == 0 ? setAmountCoffe(0) : setAmountCoffe(AmountCoffe - 1)
+    // }
     
     return(
        <CoffeContext.Provider 
@@ -64,7 +79,9 @@ export function CoffeContextProvider({ children }: CoffeContextProviderProps){
                 Cart,
                 CallSetCart,
                 Address,
-                CallSetAddress
+                CallSetAddress,
+                Total,
+                CallSetTotal
             }}
         >
             {children}

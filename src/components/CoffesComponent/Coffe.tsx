@@ -15,7 +15,7 @@ interface CoffeLayoutProps{
 
 export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe }: CoffeLayoutProps){
     const [AmountCoffe, setAmountCoffe] = useState(1)
-    const { CallSetCart } = useContext(CoffeContext)
+    const { CallSetCart, CallSetTotal } = useContext(CoffeContext)
 
     function PlusAmountCoffe(){
         setAmountCoffe(AmountCoffe + 1)
@@ -34,6 +34,7 @@ export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeT
         }
 
         CallSetCart(NewCoffeToCart)
+        CallSetTotal(9.90 * AmountCoffe + 3.50)
     }
 
     return(

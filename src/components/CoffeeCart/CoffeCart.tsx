@@ -1,13 +1,16 @@
 import { Minus, Plus, Trash } from "phosphor-react";
 import { StylesCartCoffees } from "./styles";
-import { CartData } from "../../contexts/CoffeContext";
-import { useState } from "react";
+import { CartData, CoffeContext } from "../../contexts/CoffeContext";
+import { useContext, useState } from "react";
 
 export function CoffeCart({ CoffeImage, TypeCoffe, Amount }: CartData){
     const [AmountCoffeCart, setAmountCoffeCart] = useState(Amount)
+    const {Total, CallSetTotal} = useContext(CoffeContext)
 
     function MinusAmountCoffe(){
+        AmountCoffeCart == 0 ? (setAmountCoffeCart(0)):
         setAmountCoffeCart(AmountCoffeCart - 1)
+        AmountCoffeCart > 0 && (CallSetTotal(-9.90))
     }
 
     return (

@@ -1,5 +1,5 @@
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { CoffeContext, newAddressRegisterSchema, newAddressRegisterSchemaData } from '../../contexts/CoffeContext'
@@ -8,18 +8,17 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
-    const { Cart, CallSetAddress, Address } = useContext(CoffeContext)
+    const { Cart, CallSetAddress, Address, Total, CallSetTotal } = useContext(CoffeContext)
     const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
 
     let price = 0
     Cart.map((item) => {
-        return price = price + item.Amount
+        price = price + item.Amount
     })
 
     price *= 9.90
-    const total = price + 3.50
 
     function handleSubmitForm(data: newAddressRegisterSchemaData){
         CallSetAddress(data)
@@ -171,7 +170,7 @@ export function Checkout(){
 
                             <div className='DescriptionCart'>
                                 <h2>Total</h2>
-                                <h2>R${total}0</h2>
+                                <h2>R${Total}</h2>
                             </div>
 
                                 {Cart.length === 0 && (
