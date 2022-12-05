@@ -49,7 +49,7 @@ export function Success(){
                             <div>
                                 <h2>Pagamento na entrega</h2>
                                 
-                                <strong>Cartão de crédito</strong>
+                                <strong>{Address.paymentMethod}</strong>
                             </div>
                         </div>
                     </div>

@@ -118,19 +118,19 @@ export function Checkout(){
 
                     <div className='PaymentOptions'>
                         <div className='InputRadioCard'>
-                            <input type="radio" name="PaymentOption" />
+                            <input value="Cartão De Crédito" type="radio" {...register('paymentMethod')} />
                             <CreditCard size={18} className='CreditCard' />
                             CARTÃO DE CRÉDITO
                         </div>
 
                         <div className='InputRadioCard'>
-                            <input type="radio" name="PaymentOption" />
+                            <input value="Cartão De Débito" type="radio" {...register('paymentMethod')} />
                             <Bank size={18} className='Bank' />
                             CARTÃO DE DÉBITO
                         </div>
                             
                         <div className='InputRadioCard'>
-                            <input type="radio" name="PaymentOption" />
+                            <input value="Dinheiro" type="radio" {...register('paymentMethod')} />
                             <Money size={18} className='Money' />
                             DINHEIRO
                         </div>   

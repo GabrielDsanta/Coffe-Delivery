@@ -16,6 +16,7 @@ export interface AddressData{
     city: string
     UF: string
     district: string
+    paymentMethod: string
 }
 
 export interface CoffeData{
@@ -29,10 +30,11 @@ export const newAddressRegisterSchema = zod.object({
     CEP: zod.string().min(8).max(8),
     road: zod.string().min(5).max(30),
     homeNumber: zod.string().min(1).max(6),
-    complement: zod.string().max(30).optional(),
+    complement: zod.string().max(40).optional(),
     district: zod.string().min(1).max(30),
     city: zod.string().min(1).max(20),
-    UF: zod.string().min(2).max(2)
+    UF: zod.string().min(2).max(2),
+    paymentMethod: zod.string().min(1)
 })
 
 export type newAddressRegisterSchemaData = zod.infer<typeof newAddressRegisterSchema>
