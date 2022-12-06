@@ -15,7 +15,7 @@ interface CoffeLayoutProps{
 
 export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe }: CoffeLayoutProps){
     const [AmountCoffe, setAmountCoffe] = useState(1)
-    const { CallSetCart, CallSetTotal } = useContext(CoffeContext)
+    const { CallSetCart, CallSetTotal, Cart } = useContext(CoffeContext)
 
     function PlusAmountCoffe(){
         setAmountCoffe(AmountCoffe + 1)
@@ -27,14 +27,16 @@ export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeT
 
     function AddCoffeToCart(e: MouseEvent<HTMLButtonElement>){
         const NewCoffeToCart: CartData = {
-            id: TypeCoffe,
+            id: TypeCoffe + (new Date().toISOString()),
             CoffeImage: CoffeImage,
             TypeCoffe: TypeCoffe,
             Amount: AmountCoffe,
         }
 
+        console.log(NewCoffeToCart)
+
         CallSetCart(NewCoffeToCart)
-        CallSetTotal(9.90 * AmountCoffe + 3.50)
+        Cart.length === 0 ? (CallSetTotal(9.90 * AmountCoffe + 3.50)): CallSetTotal(9.90 * AmountCoffe)
     }
 
     return(

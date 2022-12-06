@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
-    const { Cart, CallSetAddress, Address, Total, CallSetTotal } = useContext(CoffeContext)
+    const { Cart, CallSetAddress, Address, Total, CartChanged } = useContext(CoffeContext)
     const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
@@ -141,7 +141,7 @@ export function Checkout(){
                     <h1>Cafés selecionados</h1>
 
                     <div className='Cart'>
-                        {Cart.length > 0 && (Cart.map((item) => {
+                        {Cart.length > 0 && CartChanged.length == 0 && (Cart.map((item) => {
                             return(
                                 <CoffeCart 
                                 key={item.id} 
@@ -149,7 +149,19 @@ export function Checkout(){
                                 TypeCoffe={item.TypeCoffe}
                                 Amount={item.Amount}
                                 id={item.id}
-                                 />
+                                />
+                            )
+                        }))}
+
+                        {CartChanged.length > 0 && (CartChanged.map((item) => {
+                            return(
+                                <CoffeCart 
+                                key={item.id} 
+                                CoffeImage={item.CoffeImage}
+                                TypeCoffe={item.TypeCoffe}
+                                Amount={item.Amount}
+                                id={item.id}
+                                />
                             )
                         }))}
 
@@ -160,7 +172,9 @@ export function Checkout(){
                         <section>
                             <div className='DescriptionCart'>
                                 <h3>Total de itens</h3>
-                                <h3>R${(price).toFixed(2)}</h3>
+                                <h3>R$
+                                    {Cart.length === 0 ? (Total)  : (Total - 3.50).toFixed(2)}
+                                    </h3>
                             </div>
 
                             <div className='DescriptionCart'>
@@ -170,7 +184,7 @@ export function Checkout(){
 
                             <div className='DescriptionCart'>
                                 <h2>Total</h2>
-                                <h2>R${Total}</h2>
+                                <h2>R${(Total).toFixed(2)}</h2>
                             </div>
 
                                 {Cart.length === 0 && (
