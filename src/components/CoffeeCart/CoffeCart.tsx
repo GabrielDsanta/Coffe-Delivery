@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 
 export function CoffeCart({ CoffeImage, TypeCoffe, Amount }: CartData){
     const [AmountCoffeCart, setAmountCoffeCart] = useState(Amount)
-    const { CallSetTotal, Cart, RemoveCoffeToCart, CartChanged } = useContext(CoffeContext)
+    const { CallSetTotal, Cart, RemoveCoffeToCart } = useContext(CoffeContext)
 
     function MinusAmountCoffe(){
         AmountCoffeCart == 0 ? (setAmountCoffeCart(0)):
@@ -19,24 +19,11 @@ export function CoffeCart({ CoffeImage, TypeCoffe, Amount }: CartData){
     }
 
     function RemoveCart(){
-        if(CartChanged.length === 0){
-            RemoveCoffeToCart(Cart.filter((cartDelete: CartData) => {
-                return TypeCoffe !== cartDelete.TypeCoffe
-            }))
-        }
+        RemoveCoffeToCart(Cart.filter((cartDelete: CartData) => {
+            return TypeCoffe !== cartDelete.TypeCoffe
+        }))
 
-        if(CartChanged.length > 1){
-            RemoveCoffeToCart(CartChanged.filter((cartDelete: CartData) => {
-                return TypeCoffe !== cartDelete.TypeCoffe
-            }))
-        }
-
-        if(CartChanged.length == 1){
-            const emptyArray: CartData[] = []
-            RemoveCoffeToCart(emptyArray)
-        }
-
-        console.log(CartChanged.length)
+        CallSetTotal(-9.90 * Amount)
     }
 
 

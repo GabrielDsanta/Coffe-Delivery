@@ -10,7 +10,6 @@ interface CoffeLayoutProps{
     TitleCoffeThree?: string
     TypeCoffe: string
     DescriptionCoffe: string
-
 }
 
 export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeThree, TypeCoffe, DescriptionCoffe }: CoffeLayoutProps){
@@ -33,10 +32,8 @@ export function CoffeLayout({ CoffeImage, TitleCoffe, TitleCoffeTwo, TitleCoffeT
             Amount: AmountCoffe,
         }
 
-        console.log(NewCoffeToCart)
-
         CallSetCart(NewCoffeToCart)
-        Cart.length === 0 ? (CallSetTotal(9.90 * AmountCoffe + 3.50)): CallSetTotal(9.90 * AmountCoffe)
+        Cart.length === 0 ? (CallSetTotal(9.90 * AmountCoffe /* + 3.50) */ )): CallSetTotal(9.90 * AmountCoffe)
     }
 
     return(

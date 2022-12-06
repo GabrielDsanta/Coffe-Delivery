@@ -26,7 +26,6 @@ export interface CoffeData{
     CallSetAddress: (data: AddressData) => void
     Total: number
     CallSetTotal: (price: number) => void
-    CartChanged: CartData[]
     RemoveCoffeToCart: (data: CartData[]) => void
 }
 
@@ -52,7 +51,6 @@ export const CoffeContext = createContext({} as CoffeData)
 
 export function CoffeContextProvider({ children }: CoffeContextProviderProps){
     const [Cart, setCart] = useState<CartData[]>([])
-    const [CartChanged, setCartChanged] = useState<CartData[]>([])
     const [Address, setAddress] = useState<AddressData>({} as AddressData)
     const [Total, setTotal] = useState(0)
 
@@ -69,7 +67,7 @@ export function CoffeContextProvider({ children }: CoffeContextProviderProps){
     }
 
     function RemoveCoffeToCart(data: CartData[]){
-        setCartChanged(data)
+        setCart(data)
     }
     
     return(
@@ -81,7 +79,6 @@ export function CoffeContextProvider({ children }: CoffeContextProviderProps){
                 CallSetAddress,
                 Total,
                 CallSetTotal,
-                CartChanged,
                 RemoveCoffeToCart
             }}
         >

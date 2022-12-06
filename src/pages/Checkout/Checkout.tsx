@@ -1,5 +1,5 @@
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { CoffeContext, newAddressRegisterSchema, newAddressRegisterSchemaData } from '../../contexts/CoffeContext'
@@ -8,17 +8,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
-    const { Cart, CallSetAddress, Address, Total, CartChanged } = useContext(CoffeContext)
+    const { Cart, CallSetAddress, Address, Total } = useContext(CoffeContext)
     const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
-
-    let price = 0
-    Cart.map((item) => {
-        price = price + item.Amount
-    })
-
-    price *= 9.90
 
     function handleSubmitForm(data: newAddressRegisterSchemaData){
         CallSetAddress(data)
@@ -141,19 +134,7 @@ export function Checkout(){
                     <h1>Cafés selecionados</h1>
 
                     <div className='Cart'>
-                        {Cart.length > 0 && CartChanged.length == 0 && (Cart.map((item) => {
-                            return(
-                                <CoffeCart 
-                                key={item.id} 
-                                CoffeImage={item.CoffeImage}
-                                TypeCoffe={item.TypeCoffe}
-                                Amount={item.Amount}
-                                id={item.id}
-                                />
-                            )
-                        }))}
-
-                        {CartChanged.length > 0 && (CartChanged.map((item) => {
+                        {Cart.length > 0 && (Cart.map((item) => {
                             return(
                                 <CoffeCart 
                                 key={item.id} 
@@ -172,9 +153,11 @@ export function Checkout(){
                         <section>
                             <div className='DescriptionCart'>
                                 <h3>Total de itens</h3>
+                                
                                 <h3>R$
-                                    {Cart.length === 0 ? (Total)  : (Total - 3.50).toFixed(2)}
-                                    </h3>
+                                    {Cart.length === 0 ? (Total).toFixed(2) : (Total).toFixed(2)}
+                                </h3>
+
                             </div>
 
                             <div className='DescriptionCart'>
@@ -184,7 +167,7 @@ export function Checkout(){
 
                             <div className='DescriptionCart'>
                                 <h2>Total</h2>
-                                <h2>R${(Total).toFixed(2)}</h2>
+                                <h2>R${(Total + 3.50).toFixed(2)}</h2>
                             </div>
 
                                 {Cart.length === 0 && (
