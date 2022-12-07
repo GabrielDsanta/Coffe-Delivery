@@ -3,7 +3,7 @@ import { StylesCartCoffees } from "./styles";
 import { CartData, CoffeContext } from "../../contexts/CoffeContext";
 import { useContext, useState } from "react";
 
-export function CoffeCart({ CoffeImage, TypeCoffe, Amount }: CartData){
+export function CoffeCart({ CoffeImage, TypeCoffe, Amount, id }: CartData){
     const [AmountCoffeCart, setAmountCoffeCart] = useState(Amount)
     const { CallSetTotal, Cart, RemoveCoffeToCart } = useContext(CoffeContext)
 
@@ -20,10 +20,10 @@ export function CoffeCart({ CoffeImage, TypeCoffe, Amount }: CartData){
 
     function RemoveCart(){
         RemoveCoffeToCart(Cart.filter((cartDelete: CartData) => {
-            return TypeCoffe !== cartDelete.TypeCoffe
+            return id !== cartDelete.id
         }))
-
-        CallSetTotal(-9.90 * Amount)
+        
+        CallSetTotal(-9.90 * AmountCoffeCart)
     }
 
 

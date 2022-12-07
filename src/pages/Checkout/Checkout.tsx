@@ -9,12 +9,21 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
     const { Cart, CallSetAddress, Address, Total } = useContext(CoffeContext)
-    const { register, handleSubmit, formState } = useForm<newAddressRegisterSchemaData>({
+    const { register, handleSubmit, formState, getValues, setValue } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
 
     function handleSubmitForm(data: newAddressRegisterSchemaData){
         CallSetAddress(data)
+        setValue('CEP', data.CEP.replace(/\D/g, ''))
+    }
+
+    function ZipCodeSearch(){
+        const cep = getValues('CEP')
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json()).then(data => {
+            console.log(data)
+        })
     }
 
     return(
@@ -40,6 +49,7 @@ export function Checkout(){
                         <input 
                             type='text' 
                             placeholder='CEP' 
+                            onKeyDown={ZipCodeSearch}
                             {...register('CEP')}
                         />
 
@@ -154,9 +164,7 @@ export function Checkout(){
                             <div className='DescriptionCart'>
                                 <h3>Total de itens</h3>
                                 
-                                <h3>R$
-                                    {Cart.length === 0 ? (Total).toFixed(2) : (Total).toFixed(2)}
-                                </h3>
+                                <h3>R${(Total).toFixed(2)}</h3>
 
                             </div>
 
