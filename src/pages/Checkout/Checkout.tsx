@@ -9,20 +9,27 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
     const { Cart, CallSetAddress, Address, Total } = useContext(CoffeContext)
-    const { register, handleSubmit, formState, getValues, setValue } = useForm<newAddressRegisterSchemaData>({
+    const { register, handleSubmit, formState, getValues, setValue, setFocus } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
 
     function handleSubmitForm(data: newAddressRegisterSchemaData){
         CallSetAddress(data)
-        setValue('CEP', data.CEP.replace(/\D/g, ''))
     }
 
     function ZipCodeSearch(){
         const cep = getValues('CEP')
+        cep.length == 8 && (CallViaCepAPI(cep))
+    }
+
+    function CallViaCepAPI(cep: string){
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then(response => response.json()).then(data => {
-            console.log(data)
+            setValue('road', data.logradouro)
+            setValue('district', data.bairro)
+            setValue('city', data.localidade)
+            setValue('UF', data.uf)
+            setFocus('homeNumber')
         })
     }
 
