@@ -1,5 +1,5 @@
 import { MapPinLine, CurrencyDollar, CreditCard, Bank, Money } from 'phosphor-react'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import { CoffeCart } from '../../components/CoffeeCart/CoffeCart'
 import { CoffeContext, newAddressRegisterSchema, newAddressRegisterSchemaData } from '../../contexts/CoffeContext'
@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 export function Checkout(){
     const { Cart, CallSetAddress, Address, Total } = useContext(CoffeContext)
-    const { register, handleSubmit, formState, getValues, setValue, setFocus } = useForm<newAddressRegisterSchemaData>({
+    const { register, handleSubmit, getValues, setValue, setFocus } = useForm<newAddressRegisterSchemaData>({
         resolver: zodResolver(newAddressRegisterSchema)
     })
 
@@ -17,9 +17,16 @@ export function Checkout(){
         CallSetAddress(data)
     }
 
-    function ZipCodeSearch(){
+    function ZipCodeSearch(e: React.FormEvent<HTMLInputElement>){
         const cep = getValues('CEP')
-        cep.length == 8 && (CallViaCepAPI(cep))
+        e.currentTarget.maxLength = 9
+        
+        let cepValue = e.currentTarget.value
+        cepValue = cepValue.replace(/\D/g, "")
+        cepValue = cepValue.replace(/^(\d{5})(\d)/, "$1-$2")
+        e.currentTarget.value = cepValue
+
+        cep.length == 9 && (CallViaCepAPI(cep))
     }
 
     function CallViaCepAPI(cep: string){
@@ -56,7 +63,7 @@ export function Checkout(){
                         <input 
                             type='text' 
                             placeholder='CEP' 
-                            onKeyDown={ZipCodeSearch}
+                            onKeyUp={ZipCodeSearch}
                             {...register('CEP')}
                         />
 

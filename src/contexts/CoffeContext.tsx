@@ -30,7 +30,7 @@ export interface CoffeData{
 }
 
 export const newAddressRegisterSchema = zod.object({
-    CEP: zod.string().min(8).max(8),
+    CEP: zod.string().min(9).max(9),
     road: zod.string().min(5).max(30),
     homeNumber: zod.string().min(1).max(6),
     complement: zod.string().max(40).optional(),
